@@ -3,9 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Website</title>
+    <title>Whip It Up!</title>
+
+    <!--linking css stylesheets-->
+    <link rel="stylesheet" href = "css/normalize.css">
+    <link rel="stylesheet" href = "css/screen.css">
 </head>
 <body>
+
+    <!--menu-->
+    <header>
+        <!--logo-->
+        <h2 class="logo"><a href="index.html">Whip It Up!</a></h2>
+
+        <!--nav options-->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <nav>
+            <ul>
+                <li><a href="index.html">All</a></li>
+                <li><a href="vegetarian.html">Vegetarian</a></li>
+                <li><a href="chicken.html">Chicken</a></li>
+                <li><a href="beef.html">Beef</a></li>
+                <li><a href="fish.html">Fish</a></li>
+                <li><a href="turkey.html">Turkey</a></li>
+                <li><a href="steak.html">Steak</a></li>
+                <li><a href="turkey.html">Turkey</a></li>
+            </ul>
+        </nav>
+
+        <!--search bar-->
+        <div class="search-container">
+            <input type="text" placeholder="Search recipes..." class="search-bar">
+            <button class="search-icon">&#128269;</button> <!--magnifying glass icon-->
+        </div>
+    </header>
+
+    <!--recipe cards-->
+    <div class="intro">
+        <h2>Welcome to</h2>
+        <h1>Whip It Up!</h1>
+        <h2>Roll up your sleeves - your next favorite recipe awaits!</h2>
+    </div>
+
+    <div class="recipe-container">
+        <div class="recipe-card">
+            <img alt="recipe image" src="images/0101_2PM_Steak-Diane_97315_SQ_hi_res copy.jpg">
+            <h6>Category</h6>
+            <h3>Name of Recipe</h3>
+            <h4>Subtitle</h4>
+            <div class="in-line">
+                <h6>⏱ Time</h6>
+                <h6># Cal</h6>
+            </div>
+        </div>
+
+        <div class="recipe-card">
+            <img alt="recipe image" src="images/0101_2PM_Steak-Diane_97315_SQ_hi_res copy.jpg">
+            <h6>Category</h6>
+            <h3>Name of Recipe</h3>
+            <h4>Subtitle</h4>
+            <div class="in-line">
+                <h6>⏱ Time</h6>
+                <h6># Cal</h6>
+            </div>
+        </div>
+
+        <div class="recipe-card">
+            <img alt="recipe image" src="images/0101_2PM_Steak-Diane_97315_SQ_hi_res copy.jpg">
+            <h6>Category</h6>
+            <h3>Name of Recipe</h3>
+            <h4>Subtitle</h4>
+            <div class="in-line">
+                <h6>⏱ Time</h6>
+                <h6># Cal</h6>
+            </div>
+        </div>
+
+        <div class="recipe-card">
+            <img alt="recipe image" src="images/0101_2PM_Steak-Diane_97315_SQ_hi_res copy.jpg">
+            <h6>Category</h6>
+            <h3>Name of Recipe</h3>
+            <h4>Subtitle</h4>
+            <div class="in-line">
+                <h6>⏱ Time</h6>
+                <h6># Cal</h6>
+            </div>
+        </div>
+
+        <div class="recipe-card">
+            <img alt="recipe image" src="images/0101_2PM_Steak-Diane_97315_SQ_hi_res copy.jpg">
+            <h6>Category</h6>
+            <h3>Name of Recipe</h3>
+            <h4>Subtitle</h4>
+            <div class="in-line">
+                <h6>⏱ Time</h6>
+                <h6># Cal</h6>
+            </div>
+        </div>
+
+    </div>
     
+     <!--footer-->
+     <section class="footer">
+        <h3>© Created by Mihika</h3>
+    </section>
+
 </body>
 </html>
