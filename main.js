@@ -12,7 +12,7 @@ const recipe = {
   const recipeContainer = document.getElementById("recipeContainer");
   
   // Loop 5 times to create identical cards
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 12; i++) {
     const card = document.createElement("div");
     card.classList.add("recipe-card");
   
