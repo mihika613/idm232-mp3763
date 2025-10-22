@@ -418,7 +418,7 @@
   }
   
   .help-directions h1 {
-    font-family: 'Onest', 'Helvetica', 'Arial';
+    font-family: 'Onest', Helvetica, sans-serif;
     margin-bottom: 1rem;
     color: var(--text-color);
   }
