@@ -160,7 +160,7 @@ if (!$is_search) {
                 <h5><?php echo htmlspecialchars($recipe['calories']); ?> cal</h5>
             </div>
 
-            <p><?php echo nl2br(htmlspecialchars($recipe['description'])); ?></p>
+            <p><?php echo nl2br(($recipe['description'])); ?></p>
 
             <div class="divider">+ ° . ๑・° ⊹ . + ° . ๑・° ⊹ . + ° . ๑・° ⊹ . + ° . ๑・° ⊹ . + ° . ๑・° ⊹ . + ° . ๑・° ⊹ .</div>
         </div>
@@ -220,7 +220,7 @@ if (!$is_search) {
                         }
 
                         echo '<h3>' . htmlspecialchars($recipe[$titleCol]) . '</h3>';
-                        echo '<h4>' . nl2br(htmlspecialchars($recipe[$descCol])) . '</h4>';
+                        echo '<h4>' . nl2br(($recipe[$descCol])) . '</h4>';
                         echo '</div>';
                     }
                 }
