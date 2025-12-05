@@ -18,76 +18,46 @@
         $protein_filter = isset($_GET['protein']) ? $_GET['protein'] : 'All';
         $search_query   = isset($_GET['query']) ? mysqli_real_escape_string($connection, $_GET['query']) : '';
 
-
-        if (!empty($search_query)) {
-            if ($protein_filter === 'All') {
-                $sql_query = "
-                    SELECT * FROM idm232_mp3763_data
-                    WHERE title LIKE '%$search_query%'
-                       OR description LIKE '%$search_query%'
-                       OR all_ingredients LIKE '%$search_query%'
-                       OR protein LIKE '%$search_query%'
-                ";
-            } else {
-                $sql_query = "
-                    SELECT * FROM idm232_mp3763_data
-                    WHERE protein = '$protein_filter'
-                      AND (
-                            title LIKE '%$search_query%' OR
-                            description LIKE '%$search_query%' OR
-                            all_ingredients LIKE '%$search_query%' OR
-                            protein LIKE '%$search_query%'
-                          )
-                ";
-            }
+        $protein_map = [
+            'Poultry'     => ["Chicken", "Turkey"],
+            'Beef'        => ["Beef", "Steak"],
+            'Vegetarian'  => ["Vegetarian"],
+            'Pork'        => ["Pork"],
+            'Fish'        => ["Fish"]
+        ];
+        
+        if (array_key_exists($protein_filter, $protein_map)) {
+            $protein_list = implode("','", $protein_map[$protein_filter]);
+            $protein_condition = "protein IN ('$protein_list')";
+        } else if ($protein_filter === "All") {
+            $protein_condition = "1"; 
         } else {
-            if ($protein_filter === 'All') {
-                $sql_query = "SELECT * FROM idm232_mp3763_data";
-            } else {
-                $sql_query = "
-                    SELECT * FROM idm232_mp3763_data
-                    WHERE protein = '$protein_filter'
-                ";
-            }
+            $protein_condition = "protein = '" . mysqli_real_escape_string($connection, $protein_filter) . "'";
+        }
+        
+        if (!empty($search_query)) {
+            $sql_query = "
+                SELECT * FROM idm232_mp3763_data
+                WHERE $protein_condition
+                  AND (
+                        title LIKE '%$search_query%' OR
+                        description LIKE '%$search_query%' OR
+                        all_ingredients LIKE '%$search_query%' OR
+                        protein LIKE '%$search_query%'
+                      )
+            ";
+        } else {
+            $sql_query = "
+                SELECT * FROM idm232_mp3763_data
+                WHERE $protein_condition
+            ";
         }
         
         $results = mysqli_query($connection, $sql_query);
         ?>
 
-
-        <!--menu-->
-        <header>
-            <!--logo-->
-            <h2 class="logo"><a href="index.php">Whip It Up!</a></h2>
-
-            <!--nav options-->
-            <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
-            <label for="nav-toggle" class="nav-toggle-label">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-            <nav>
-                <ul>
-                    <li><a href="index.php?protein=All">All</a></li>
-                    <li><a href="index.php?protein=Vegetarian">Vegetarian</a></li>
-                    <li><a href="index.php?protein=Chicken">Chicken</a></li>
-                    <li><a href="index.php?protein=Beef">Beef</a></li>
-                    <li><a href="index.php?protein=Fish">Fish</a></li>
-                    <li><a href="index.php?protein=Turkey">Turkey</a></li>
-                    <li><a href="index.php?protein=Steak">Steak</a></li>
-                </ul>
-            </nav>
-
-
-            <!--search bar-->
-            <div class="search-container">
-                <form method="GET">
-                    <input type="textbox" name="query" placeholder="Search recipes..." class="search-bar">
-                    <button class="submit-btn">Submit</button>
-                </form>
-            </div>
-        </header>
+        <!--header-->
+        <?php include 'header.php'; ?>
 
         <div class="intro">
             <?php if (!empty($search_query)) { ?>
@@ -95,9 +65,11 @@
                 <h1>"<?php echo htmlspecialchars($search_query); ?>"</h1>
                 <h2>Here's what we found.</h2>
 
-            <?php } else if ($protein_filter !== 'All') { ?>
+            <?php } else if ($protein_filter !== 'All') { 
+                $pretty_name = $protein_filter;
+            ?>
                 <h2>Whip It Up's</h2>
-                <h1><?php echo htmlspecialchars($protein_filter); ?> Recipes</h1>
+                <h1><?php echo htmlspecialchars($pretty_name); ?> Recipes</h1>
                 <h2>Classic comfort with a flavorful twist.</h2>
 
             <?php } else { ?>
@@ -127,15 +99,11 @@
         ?>
 
         <!--footer-->
-        <section class="footer">
-            <h3>© Created by Mihika</h3>
-        </section>
+        <?php include 'footer.php'; ?>
     </div>
 
-    <!-- Help Button -->
-    <button class="help-button" id="helpBtn" title="Need Help?">?</button> 
-
-    <script src="main.js"></script>
+    <!-- help button & linking js -->
+    <?php include 'help-button.php'; ?>
 
 </body>
 </html>

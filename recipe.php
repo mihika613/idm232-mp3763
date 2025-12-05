@@ -74,40 +74,8 @@ if (!$is_search) {
 </head>
 <body>
 
-    <!--menu-->
-    <header>
-        <!--logo-->
-        <h2 class="logo"><a href="index.php">Whip It Up!</a></h2>
-
-        <!--nav options-->
-        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
-        <label for="nav-toggle" class="nav-toggle-label">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        <nav>
-            <ul>
-                <li><a href="index.php?protein=All">All</a></li>
-                <li><a href="index.php?protein=Vegetarian">Vegetarian</a></li>
-                <li><a href="index.php?protein=Chicken">Chicken</a></li>
-                <li><a href="index.php?protein=Beef">Beef</a></li>
-                <li><a href="index.php?protein=Fish">Fish</a></li>
-                <li><a href="index.php?protein=Turkey">Turkey</a></li>
-                <li><a href="index.php?protein=Steak">Steak</a></li>
-            </ul>
-        </nav>
-
-        <!--search bar-->
-        <div class="search-container">
-            <form method="GET" action="recipe.php">
-                <!-- preserve protein filter when searching -->
-                <input type="hidden" name="protein" value="<?php echo htmlspecialchars($protein_filter); ?>">
-                <input type="textbox" name="query" placeholder="Search recipes..." class="search-bar" value="<?php echo htmlspecialchars($search_query); ?>">
-                <button class="submit-btn">Submit</button>
-            </form>
-        </div>
-    </header>
+<!--header-->
+<?php include 'header.php'; ?>
 
 <?php if ($is_search): ?>
     <div class="page-container">
@@ -134,21 +102,18 @@ if (!$is_search) {
         <?php mysqli_close($connection); ?>
 
         <!--footer-->
-        <section class="footer">
-            <h3>© Created by Mihika</h3>
-        </section>
+        <?php include 'footer.php'; ?>
     </div>
 
     <!-- Help Button -->
-    <button class="help-button" id="helpBtn" title="Need Help?">?</button> 
-    <script src="main.js"></script>
+    <?php include 'help-button.php'; ?>
 
     <?php
     exit();
     ?>
 
 <?php else: ?>
-    <div class="single-recipe-overview">
+    <div class="section single-recipe-overview">
         <div class="recipe-text">
             <h1><?php echo htmlspecialchars($recipe['title']); ?></h1>
             <h3><?php echo htmlspecialchars($recipe['subtitle']); ?></h3>
@@ -176,7 +141,7 @@ if (!$is_search) {
             <h3>Ingredients</h3>
         </div>
     
-        <div class="ingredients">
+        <div class="section ingredients">
             <img alt="ingredients image" src="<?php echo 'new_images/' . $recipe['id'] . '/' . htmlspecialchars($recipe['ingredients_img']); ?>">
             <div class="receipt">
                 <h3>INGREDIENTS</h3>
@@ -199,7 +164,7 @@ if (!$is_search) {
             <h3>Instructions</h3>
         </div>
 
-        <div class="instructions-container">
+        <div class="section instructions-container">
             <?php
                 for ($i = 1; $i <= 6; $i++) {
                     $titleCol = 'step_title_#' . $i;
@@ -234,13 +199,10 @@ if (!$is_search) {
     ?>
 
     <!--footer-->
-    <section class="footer">
-        <h3>© Created by Mihika</h3>
-    </section>
+    <?php include 'footer.php'; ?>
 
-    <!-- Help Button -->
-    <button class="help-button" id="helpBtn" title="Need Help?">?</button> 
-    <script src="main.js"></script>
+    <!-- help button & linking js -->
+    <?php include 'help-button.php'; ?>
 
 <?php endif; ?>
 </body>
