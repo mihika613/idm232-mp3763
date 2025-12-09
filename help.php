@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>No Results Found</title>
+    <title>Help</title>
 
     <!--linking css stylesheets-->
     <link rel="stylesheet" href = "css/normalize.css">
@@ -11,6 +11,9 @@
 </head>
 <body>
     
+    <!--search-->
+    <?php include "search.php"; ?>
+
     <!--header-->
     <?php include 'header.php'; ?>
 

@@ -23,10 +23,10 @@
 
         <!--search bar-->
         <div class="search-container">
-            <form method="GET" action="recipe.php">
+            <form method="GET" action="index.php">
                 <!-- preserve protein filter when searching -->
                 <input type="hidden" name="protein" value="<?php echo htmlspecialchars($protein_filter); ?>">
-                <input type="textbox" name="query" placeholder="Search recipes..." class="search-bar" value="<?php echo htmlspecialchars($search_query); ?>">
+                <input type="text" name="query" placeholder="Search recipes..." class="search-bar" value="<?php echo htmlspecialchars($search_query); ?>">
                 <button class="submit-btn">Submit</button>
             </form>
         </div>
